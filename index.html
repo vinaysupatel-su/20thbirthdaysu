@@ -1,26 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Sanjana</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>🎂 Happy Birthday Sanjana ❤️</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="hearts"></div>
-  <div class="container">
-    <h1 class="title">🎂 Happy Birthday Sanjana 💖</h1>
-    <p class="subtitle">With all my love,<br><span class="name">Vinay Patel</span></p>
+  <div class="hearts" aria-hidden="true"></div>
 
-    <div id="countdown"></div>
+  <!-- audio (placeholder) -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+    <!-- upload music.mp3 later into repo root -->
+  </audio>
 
-    <button id="revealBtn" disabled>🔒 Gift Revelation</button>
-  </div>
+  <!-- music toggle -->
+  <button id="musicToggle" class="music-toggle" aria-label="Play music">♪</button>
 
-  <script src="script.js"></script>
+  <main class="page center">
+    <h1 class="title">🎂 Happy Birthday Sanjana ❤️</h1>
+
+    <p class="subtitle">To the most beautiful girl in my world, you make my life brighter than a thousand stars ✨</p>
+
+    <p class="cheesy">Every heartbeat of mine whispers your name, today and forever 💕</p>
+
+    <div class="count-block">
+      <h3 class="count-title">Your Surprise Unlocks In:</h3>
+      <div id="countdown" class="countdown neon">Loading...</div>
+      <div id="upcount" class="upcount"></div>
+    </div>
+
+    <button id="giftButton" class="cta" disabled>🔒 Gift Revelation</button>
+
+    <p class="from">With endless love,<br><strong>Vinay Patel</strong></p>
+  </main>
+
+  <footer class="small">Tip: To preview the reveal page now, open <code>gift.html?preview=1</code></footer>
 </body>
 </html>
-
 
 
