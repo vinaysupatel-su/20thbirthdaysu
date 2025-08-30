@@ -3,113 +3,164 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Special Gift</title>
+  <title>The Big Surprise</title>
   <style>
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
-      background: linear-gradient(120deg, #ff9a9e, #fad0c4, #fbc2eb);
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
       background-size: 400% 400%;
       animation: gradient 12s ease infinite;
-      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      color: #fff;
+      text-align: center;
+      flex-direction: column;
     }
     @keyframes gradient {
       0% {background-position: 0% 50%;}
       50% {background-position: 100% 50%;}
       100% {background-position: 0% 50%;}
     }
-    header {
-      text-align: center;
-      padding: 80px 20px;
-      color: #fff;
-    }
-    header h1 {
+    h1 {
       font-size: 3em;
-      margin: 0;
-      text-shadow: 0 0 20px rgba(255,255,255,0.8);
-    }
-    header p {
-      font-size: 1.2em;
-      opacity: 0.9;
-    }
-    section {
-      max-width: 800px;
-      margin: 60px auto;
-      background: rgba(255,255,255,0.85);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    section h2 {
-      color: #d6336c;
       margin-bottom: 20px;
+      text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 0 40px #ff1c68;
+      animation: glow 2s infinite alternate;
     }
-    section p {
-      font-size: 1.1em;
-      line-height: 1.6;
-      margin-bottom: 20px;
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff, 0 0 20px #ff4d6d; }
+      to   { text-shadow: 0 0 20px #fff, 0 0 40px #ff7eb3; }
     }
-    .heart {
-      font-size: 3em;
-      animation: heartbeat 1.5s infinite;
+    #countdown {
+      font-size: 2em;
+      margin-top: 10px;
+      background: rgba(0,0,0,0.3);
+      padding: 15px 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
     }
-    @keyframes heartbeat {
-      0%,100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
+    #reveal {
+      display: none;
+      animation: fadeIn 2s ease forwards;
     }
-    footer {
-      text-align: center;
-      padding: 30px;
-      font-size: 0.9em;
-      color: #fff;
-      opacity: 0.8;
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
     }
-    .button {
-      display: inline-block;
-      padding: 12px 30px;
-      background: #ff4d6d;
-      color: white;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      transition: 0.3s;
+    .emoji {
+      font-size: 4em;
+      margin-top: 30px;
+      animation: bounce 1.5s infinite;
     }
-    .button:hover {
-      background: #d6336c;
-      transform: scale(1.05);
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
+  <canvas id="confetti"></canvas>
+  <h1>⏳ The Surprise Unlocks In...</h1>
+  <div id="countdown"></div>
 
-  <header>
-    <h1>Your Special Surprise Awaits</h1>
-    <p>Made with love, just for you 💕</p>
-  </header>
+  <div id="reveal">
+    <h1>Pack Your Bags! ✈️</h1>
+    <p>We are going on a <strong>Family Vacation Abroad!</strong> 🌍💖</p>
+    <p>This is the surprise I’ve been waiting years to give you… 🎁</p>
+    <div class="emoji">🎉❤️🥂</div>
+  </div>
 
-  <section>
-    <div class="heart">❤️</div>
-    <h2>Welcome, My Love</h2>
-    <p>This page is more than just a website. It’s a little secret I’ve kept for you, 
-    something that will reveal itself when the time is right ✨</p>
-    <p>Until then, know that you mean the world to me and that this surprise 
-    is only the beginning of many more magical moments together 🌹</p>
-  </section>
+  <script>
+    // 🎯 Set your reveal date (YYYY-MM-DD HH:MM:SS)
+    const revealDate = new Date("2031-08-30 18:00:00").getTime(); // CHANGE THIS
 
-  <section>
-    <h2>The Future Gift</h2>
-    <p>Someday, when the right moment comes, this page will transform into something extraordinary.</p>
-    <p>It might be a journey, an adventure, or a dream come true… but one thing is certain: 
-    it will be unforgettable 💫</p>
-    <a href="#" class="button">Locked Surprise 🔒</a>
-  </section>
+    const countdown = document.getElementById("countdown");
+    const reveal = document.getElementById("reveal");
 
-  <footer>
-    With all my love, <br> — [Your Name]
-  </footer>
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = revealDate - now;
 
+      if (distance <= 0) {
+        clearInterval(timer);
+        countdown.style.display = "none";
+        reveal.style.display = "block";
+        startConfetti();
+      } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+    }, 1000);
+
+    // 🎉 Confetti Animation
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let confetti = [];
+    const colors = ["#ff4d6d", "#ff7eb3", "#fff", "#ffd700", "#ff9a9e"];
+
+    function ConfettiPiece() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height - canvas.height;
+      this.size = Math.random() * 10 + 5;
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+      this.speed = Math.random() * 3 + 2;
+    }
+
+    ConfettiPiece.prototype.update = function() {
+      this.y += this.speed;
+      if (this.y > canvas.height) {
+        this.y = -10;
+        this.x = Math.random() * canvas.width;
+      }
+    }
+
+    ConfettiPiece.prototype.draw = function() {
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    function startConfetti() {
+      for (let i = 0; i < 200; i++) {
+        confetti.push(new ConfettiPiece());
+      }
+      animate();
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confetti.forEach(c => {
+        c.update();
+        c.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
 </body>
 </html>
 
