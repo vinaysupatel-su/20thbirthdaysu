@@ -1,153 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gift Revelation ✨</title>
-  <style>
-    :root{ --pink:#ff7eb3; --rose:#ff4d6d; --glass:rgba(255,255,255,.88) }
-    *{box-sizing:border-box}
-    body{
-      margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:24px;
-      font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:#222;
-      background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb); background-size:400% 400%; animation:bg 14s ease infinite;
-      overflow:hidden;
-    }
-    @keyframes bg{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-    .wrap{
-      width:min(940px,96vw); background:var(--glass); border-radius:24px; padding:34px 26px;
-      box-shadow:0 20px 60px rgba(0,0,0,.18); backdrop-filter: blur(6px); position:relative;
-    }
-    h1{
-      margin:0 0 10px; font-size:clamp(28px,5.2vw,46px); color:#d6336c;
-      text-shadow:0 0 10px rgba(255,255,255,.9); animation:glow 2s ease-in-out infinite alternate;
-    }
-    @keyframes glow{
-      from{ text-shadow:0 0 8px #fff, 0 0 16px var(--pink) }
-      to{   text-shadow:0 0 14px #fff, 0 0 28px var(--rose) }
-    }
-    p{margin:8px auto; line-height:1.7; font-size:clamp(15px,2.6vw,18px); max-width:760px}
-    .pill{display:inline-block; padding:8px 14px; border-radius:999px; background:#ffe3ec; color:#c2255c; font-weight:700; margin:8px 0 14px}
-    .panel{background:#fff; border-radius:18px; box-shadow:0 8px 24px rgba(0,0,0,.08); padding:18px; max-width:720px; margin:14px auto}
-    #count{font-weight:800; font-size:clamp(20px,5.6vw,34px); margin-top:4px}
-    .btn{
-      appearance:none; border:0; cursor:pointer; margin-top:18px;
-      padding:12px 26px; border-radius:999px; font-weight:700; letter-spacing:.4px;
-      background:linear-gradient(90deg,#ff4d6d,#ff7eb3); color:#fff;
-      box-shadow:0 10px 24px rgba(255,77,109,.35); transition:transform .15s ease, filter .15s ease;
-      text-decoration:none; display:inline-block;
-    }
-    .btn:hover{ transform:translateY(-2px); filter:brightness(1.05) }
-    .emoji{font-size:44px; animation:bounce 1.6s infinite; margin-top:10px}
-    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-    canvas{position:fixed; inset:0; width:100%; height:100%; pointer-events:none}
-    .hide{display:none}
-    .divider{width:80px; height:4px; background:linear-gradient(90deg,transparent,#ff6b8a,transparent); border-radius:2px; margin:14px auto}
-  </style>
+  <meta charset="UTF-8">
+  <title>Your Surprise Gift 🎁</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <canvas id="confetti"></canvas>
+  <canvas id="confetti-canvas"></canvas>
+  <div class="container">
+    <h1>🎉 Sanjana, My Love 🎉</h1>
+    <p class="message">After years of waiting, here is my special gift to you ❤️  
+    You are my everything, and this journey is just the beginning 🌍✨</p>
 
-  <!-- LOCKED STATE -->
-  <div class="wrap" id="lockedBox">
-    <span class="pill">Locked until 14 December 2033 • 10:00 AM</span>
-    <h1>Almost there, Sanjana 💖</h1>
-    <div class="divider"></div>
-    <p>
-      This page holds a promise I made with all my heart. When the time arrives,
-      it will open to reveal something I’ve planned just for you & your family.
-    </p>
-    <div class="panel">
-      <div style="color:#b32054; font-weight:700">Time remaining</div>
-      <div id="count">Loading…</div>
+    <h2>💞 Our Memories 💞</h2>
+    <div class="slideshow-container">
+      <div class="mySlides fade">
+        <img src="https://picsum.photos/id/1015/600/400" alt="Slide 1">
+      </div>
+      <div class="mySlides fade">
+        <img src="https://picsum.photos/id/1016/600/400" alt="Slide 2">
+      </div>
+      <div class="mySlides fade">
+        <img src="https://picsum.photos/id/1025/600/400" alt="Slide 3">
+      </div>
     </div>
-    <p class="emoji">🔒✨</p>
-    <p style="opacity:.8; font-size:14px">P.S. If you’re seeing this early, it’s because great love is patient. — Vinay</p>
+
+    <br>
+    <div style="text-align:center">
+      <span class="dot"></span> 
+      <span class="dot"></span> 
+      <span class="dot"></span> 
+    </div>
+
+    <h2>🎥 A Special Video</h2>
+    <div class="video-placeholder">
+      <!-- Replace with your video embed later -->
+      <p>Video will be added here...</p>
+    </div>
+
+    <a href="https://drive.google.com/" target="_blank" class="gift-btn">🎁 Open Your Gift</a>
   </div>
-
-  <!-- REVEAL STATE -->
-  <div class="wrap hide" id="revealBox">
-    <h1>Pack Your Bags, Sanjana! ✈️</h1>
-    <div class="divider"></div>
-    <p>
-      Today is the day. With all my love, I’m gifting you a <strong>family vacation abroad</strong>.
-      Thank you for filling my life with warmth and meaning. I can’t wait to make these memories with you. 💞
-    </p>
-    <p><strong>Forever yours — Vinay Patel</strong></p>
-    <a class="btn" id="giftLink" href="YOUR_GOOGLE_DRIVE_LINK_HERE" target="_blank" rel="noopener">Open Your Gift →</a>
-    <p class="emoji">🎉❤️🥂</p>
-  </div>
-
-  <script>
-    // === SAME UNLOCK DATE/TIME AS INDEX PAGE ===
-    const UNLOCK_AT = new Date("2024-12-14T10:00:00");
-
-    // Secret preview for Vinay: add ?preview=1 to URL to force reveal
-    const params = new URLSearchParams(location.search);
-    const PREVIEW = params.get("preview") === "1";
-
-    const locked = document.getElementById("lockedBox");
-    const reveal = document.getElementById("revealBox");
-    const count = document.getElementById("count");
-
-    function fmt(ms){
-      const d = Math.floor(ms / (1000*60*60*24));
-      const h = Math.floor((ms % (1000*60*60*24))/(1000*60*60));
-      const m = Math.floor((ms % (1000*60*60))/(1000*60));
-      const s = Math.floor((ms % (1000*60))/1000);
-      return `${d}d ${h}h ${m}m ${s}s`;
-    }
-
-    function startConfetti(){
-      const canvas = document.getElementById('confetti');
-      const ctx = canvas.getContext('2d');
-      function resize(){ canvas.width = innerWidth; canvas.height = innerHeight; }
-      resize(); addEventListener('resize',resize);
-
-      const colors = ["#ff4d6d","#ff7eb3","#fff","#ffd700","#ff9a9e"];
-      const parts = Array.from({length:220}, ()=>({
-        x: Math.random()*canvas.width,
-        y: Math.random()*-canvas.height,
-        r: Math.random()*8+4,
-        s: Math.random()*2+1,
-        c: colors[(Math.random()*colors.length)|0]
-      }));
-      function step(){
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        for(const p of parts){
-          p.y += p.s;
-          if(p.y > canvas.height+10){ p.y = -10; p.x = Math.random()*canvas.width; }
-          ctx.fillStyle = p.c; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
-        }
-        requestAnimationFrame(step);
-      }
-      step();
-    }
-
-    function setLocked(){
-      locked.classList.remove("hide");
-      reveal.classList.add("hide");
-    }
-    function setReveal(){
-      locked.classList.add("hide");
-      reveal.classList.remove("hide");
-      startConfetti();
-    }
-
-    function run(){
-      if(PREVIEW){ setReveal(); return; }
-
-      const tick = () => {
-        const now = new Date();
-        const ms = UNLOCK_AT - now;
-        if(ms <= 0){ setReveal(); clearInterval(t); }
-        else { setLocked(); count.textContent = fmt(ms); }
-      };
-      tick();
-      const t = setInterval(tick, 1000);
-    }
-    run();
-  </script>
 </body>
 </html>
 
