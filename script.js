@@ -4,7 +4,7 @@
 
 // Set your unlock date/time here (local browser time)
 // Format: Month Day, Year HH:MM:SS or ISO string. Example below is 14 Dec 2033 at 10:00 local time:
-const UNLOCK_AT = new Date("December 14, 2024 10:00:00").getTime();
+const UNLOCK_AT = new Date("December 14, 2033 10:00:00").getTime();
 
 // Helper to safely get element
 const $ = (sel) => document.querySelector(sel);
@@ -217,5 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // slideshow start will be triggered by initGiftLock when unlocked/preview
   }
 });
+
 
 
