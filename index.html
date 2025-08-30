@@ -1,115 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday, Sanjana 🎂</title>
-  <style>
-    :root{
-      --pink:#ff7eb3; --rose:#ff4d6d; --light:#fff; --glass:rgba(255,255,255,.85);
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0; font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center;
-      color:#222; background:linear-gradient(130deg,#ff9a9e, #fad0c4, #fbc2eb);
-      background-size:400% 400%; animation:bg 14s ease infinite; padding:24px;
-    }
-    @keyframes bg{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-    .card{
-      width:min(920px,96vw); padding:38px 26px; background:var(--glass); border-radius:24px;
-      box-shadow:0 20px 60px rgba(0,0,0,.15); backdrop-filter: blur(6px);
-    }
-    h1{
-      margin:8px 0 6px; font-size:clamp(28px,5vw,44px); color:#d6336c;
-      text-shadow:0 0 10px rgba(255,255,255,.9);
-      animation:glow 2s ease-in-out infinite alternate;
-    }
-    @keyframes glow{
-      from{ text-shadow:0 0 8px #fff, 0 0 16px var(--pink) }
-      to{   text-shadow:0 0 14px #fff, 0 0 28px var(--rose) }
-    }
-    .date-chip{
-      display:inline-block; padding:8px 14px; border-radius:999px; background:#ffe3ec; color:#c2255c; font-weight:600;
-      margin-bottom:12px;
-    }
-    p{margin:8px auto; line-height:1.7; font-size:clamp(15px,2.6vw,18px); max-width:760px}
-    .heart{font-size:40px; margin:10px 0 2px; animation:beat 1.6s infinite}
-    @keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
-    .panel{
-      margin:22px auto 10px; padding:18px; border-radius:18px; background:#fff; max-width:720px;
-      box-shadow:0 8px 24px rgba(0,0,0,.08);
-    }
-    .label{font-weight:700; color:#b32054; letter-spacing:.4px}
-    #countdown{font-size:clamp(20px,5.6vw,34px); font-weight:800; margin-top:6px}
-    .btn{
-      appearance:none; border:0; cursor:pointer; margin-top:18px;
-      padding:12px 26px; border-radius:999px; font-weight:700; letter-spacing:.4px;
-      background:linear-gradient(90deg,#ff4d6d,#ff7eb3); color:#fff;
-      box-shadow:0 10px 24px rgba(255,77,109,.35); transition:transform .15s ease, filter .15s ease;
-    }
-    .btn:hover{ transform:translateY(-2px); filter:brightness(1.05) }
-    footer{opacity:.8; margin-top:16px; font-size:14px}
-    .mini{font-size:13px; opacity:.8}
-    .divider{width:80px; height:4px; background:linear-gradient(90deg,transparent,#ff6b8a,transparent); border-radius:2px; margin:14px auto}
-  </style>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Sanjana 🎂💖</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <main class="card">
-    <div class="heart">❤️</div>
-    <span class="date-chip">27 August 2025</span>
-    <h1>Happy Birthday, Sanjana!</h1>
-    <div class="divider"></div>
-    <p>
-      On your special day, I want this little corner of the internet to whisper how much you mean to me.
-      May your life be full of joy, wonder, and the kind of love that feels like home.
-    </p>
-    <p><strong>With all my love, always — Vinay Patel</strong> 💞</p>
+  <div class="container">
+    <h1>💖 Happy Birthday, Sanjana 💖</h1>
+    <h2>With all my love, Vinay Patel</h2>
 
-    <section class="panel">
-      <div class="label">Gift unlocks on</div>
-      <div style="font-weight:700; color:#c2255c; margin-top:2px">14 December 2033 • 10:00 AM</div>
-      <div id="countdown">Loading…</div>
-      <button class="btn" id="giftBtn">Gift Revelation →</button>
-      <div class="mini">You can visit, but the surprise won’t open until the unlock time.</div>
-    </section>
+    <p class="message">On this special day (27 August 2025), I want you to know how much you mean to me.  
+    This is not just a birthday gift, but a promise of love forever ❤️</p>
 
-    <footer>
-      Forever yours, Vinay ❤️
-    </footer>
-  </main>
+    <h3 id="countdown-title">Time left for your surprise gift:</h3>
+    <div id="countdown"></div>
 
-  <script>
-    // === SET YOUR UNLOCK DATE/TIME HERE (local browser time) ===
-    // Format: YYYY-MM-DDTHH:MM:SS (24h). Example below is 14 Dec 2033, 10:00
-    const UNLOCK_AT = new Date("2024-12-14T10:00:00");
-
-    const cd = document.getElementById("countdown");
-    const btn = document.getElementById("giftBtn");
-
-    // Countdown
-    const tick = () => {
-      const now = new Date();
-      const ms = UNLOCK_AT - now;
-      if (ms <= 0) {
-        cd.textContent = "Unlocked ✨";
-        return;
-      }
-      const d = Math.floor(ms / (1000*60*60*24));
-      const h = Math.floor((ms % (1000*60*60*24))/(1000*60*60));
-      const m = Math.floor((ms % (1000*60*60))/(1000*60));
-      const s = Math.floor((ms % (1000*60))/1000);
-      cd.textContent = `${d}d ${h}h ${m}m ${s}s`;
-    };
-    tick();
-    setInterval(tick, 1000);
-
-    // Go to gift page
-    btn.addEventListener("click", () => {
-      // You can pass no params. (gift.html handles locking itself)
-      window.location.href = "gift.html";
-    });
-  </script>
+    <button id="revealBtn" disabled>🎁 Gift Revelation</button>
+  </div>
 </body>
 </html>
+
+
 
