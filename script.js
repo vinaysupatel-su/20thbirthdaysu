@@ -1,5 +1,5 @@
 // Countdown Timer
-const targetDate = new Date("December 14, 2033 00:00:00").getTime();
+const targetDate = new Date("December 14, 2024 00:00:00").getTime();
 const countdownEl = document.getElementById("countdown");
 const titleEl = document.getElementById("countdown-title");
 const revealBtn = document.getElementById("revealBtn");
@@ -92,3 +92,4 @@ if (document.getElementById("confetti-canvas")) {
 
   setInterval(drawConfetti, 20);
 }
+
