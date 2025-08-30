@@ -1,13 +1,13 @@
-// Countdown Timer
-const targetDate = new Date("December 14, 2024 00:00:00").getTime();
+// Unlock date: 14 Dec 2033
+const unlockDate = new Date("Dec 14, 2024 00:00:00").getTime();
+
 const countdownEl = document.getElementById("countdown");
-const titleEl = document.getElementById("countdown-title");
 const revealBtn = document.getElementById("revealBtn");
 
 if (countdownEl) {
   setInterval(() => {
     const now = new Date().getTime();
-    let distance = targetDate - now;
+    let distance = unlockDate - now;
 
     if (distance > 0) {
       // Countdown
@@ -15,77 +15,66 @@ if (countdownEl) {
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      countdownEl.innerHTML = `⏳ Unlocks in ${days}d ${hours}h ${minutes}m ${seconds}s`;
       if (revealBtn) revealBtn.disabled = true;
     } else {
       // Upcount
-      distance = now - targetDate;
+      distance = now - unlockDate;
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      countdownEl.innerHTML = `Unlocked ${days}d ${hours}h ${minutes}m ${seconds}s ago 🎉`;
-      titleEl.innerHTML = "Your gift is now unlocked!";
-      if (revealBtn) revealBtn.disabled = false;
+      countdownEl.innerHTML = `🎉 Gift unlocked ${days} days ago!`;
+      if (revealBtn) {
+        revealBtn.disabled = false;
+        revealBtn.onclick = () => window.location.href = "gift.html";
+      }
     }
   }, 1000);
-
-  if (revealBtn) {
-    revealBtn.addEventListener("click", () => {
-      window.location.href = "gift.html";
-    });
-  }
 }
 
-// Slideshow
+// Slideshow for gift page
 let slideIndex = 0;
 function showSlides() {
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
+  let slides = document.getElementsByClassName("slide");
   for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
   slideIndex++;
   if (slideIndex > slides.length) slideIndex = 1;
-  for (let i = 0; i < dots.length; i++) dots[i].className = dots[i].className.replace(" active", "");
   slides[slideIndex - 1].style.display = "block";
-  dots[slideIndex - 1].className += " active";
-  setTimeout(showSlides, 3000);
+  setTimeout(showSlides, 4000); // 4 sec
 }
-if (document.getElementsByClassName("mySlides").length > 0) showSlides();
+if (document.querySelector(".slideshow-container")) showSlides();
 
-// Confetti Animation (gift.html)
+// Confetti on gift page
 if (document.getElementById("confetti-canvas")) {
-  const confettiCanvas = document.getElementById("confetti-canvas");
-  const ctx = confettiCanvas.getContext("2d");
-  confettiCanvas.width = window.innerWidth;
-  confettiCanvas.height = window.innerHeight;
+  const canvas = document.getElementById("confetti-canvas");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-  const confetti = Array.from({ length: 100 }).map(() => ({
-    x: Math.random() * confettiCanvas.width,
-    y: Math.random() * confettiCanvas.height,
-    r: Math.random() * 6 + 4,
-    d: Math.random() * 100,
-    color: `hsl(${Math.random() * 360},100%,50%)`,
-    tilt: Math.random() * 10 - 10
+  let confetti = Array.from({ length: 150 }).map(() => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 6 + 2,
+    d: Math.random() * 10,
   }));
 
   function drawConfetti() {
-    ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "rgba(255,182,193,0.9)";
+    ctx.beginPath();
     confetti.forEach((c, i) => {
-      ctx.beginPath();
-      ctx.fillStyle = c.color;
-      ctx.fillRect(c.x, c.y, c.r, c.r);
-      ctx.fill();
+      ctx.moveTo(c.x, c.y);
+      ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2, true);
     });
-    updateConfetti();
+    ctx.fill();
+    update();
   }
 
-  function updateConfetti() {
+  function update() {
     confetti.forEach((c) => {
-      c.y += Math.cos(c.d) + 1 + c.r / 2;
-      c.x += Math.sin(c.d);
-      if (c.y > confettiCanvas.height) {
-        c.y = 0;
-        c.x = Math.random() * confettiCanvas.width;
+      c.y += Math.cos(c.d) + 1;
+      c.x += Math.sin(c.d) * 2;
+      if (c.y > canvas.height) {
+        c.x = Math.random() * canvas.width;
+        c.y = -10;
       }
     });
   }
