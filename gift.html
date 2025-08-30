@@ -1,38 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Gift Sanjana</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>🎁 Your Surprise, Sanjana</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="hearts"></div>
-  <div class="container">
-    <h1 class="title">💝 Sanjana, my love, this is your gift 💝</h1>
-    <p class="subtitle">With you, every moment is special ❤️</p>
+  <div class="hearts" aria-hidden="true"></div>
 
-    <!-- Slideshow -->
-    <div class="slideshow-container">
-      <div class="slide fade"><img src="https://picsum.photos/600/400?random=1" alt="Pic 1"></div>
-      <div class="slide fade"><img src="https://picsum.photos/600/400?random=2" alt="Pic 2"></div>
-      <div class="slide fade"><img src="https://picsum.photos/600/400?random=3" alt="Pic 3"></div>
-    </div>
+  <!-- audio (same file used here) -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+  <button id="musicToggle" class="music-toggle" aria-label="Play music">♪</button>
 
-    <!-- Video Placeholder -->
-    <div class="video-placeholder">
-      <p>🎥 A special video for you will appear here…</p>
-    </div>
+  <!-- confetti canvas -->
+  <canvas id="confetti" class="confetti-canvas" aria-hidden="true"></canvas>
 
-    <!-- Gift Button -->
-    <a href="YOUR_GOOGLE_DRIVE_LINK" target="_blank">
-      <button class="gift-btn">🎁 Open Your Gift</button>
-    </a>
-  </div>
+  <main class="page center">
+    <h1 class="title">✨ Sanjana, the best gift in my life is YOU ❤️</h1>
+    <p class="subtitle">But today, it’s my turn to surprise you 💌</p>
 
-  <canvas id="confetti-canvas"></canvas>
-  <script src="script.js"></script>
+    <!-- locked area / unlocked area controlled by script -->
+    <section id="lockedArea" class="panel">
+      <div class="pill">Locked until 14 December 2033 • 10:00 AM</div>
+      <h2>Almost there, my love 💖</h2>
+      <p class="small">This page holds a promise I made with all my heart. When the time arrives, it will open to reveal something I’ve planned just for you & your family.</p>
+      <div class="mini-count"><div id="giftCountdown" class="countdown neon">Loading...</div></div>
+      <p class="small">P.S. If you’re seeing this early, great love is patient — Vinay</p>
+    </section>
+
+    <section id="revealArea" class="panel hide">
+      <h2 class="shine">Pack Your Bags! ✈️</h2>
+      <p class="subtitle">Sanjana, the best gift in my life is you. But today, I give you a promise — new memories, new laughter, forever together.</p>
+
+      <!-- slideshow -->
+      <div class="slideshow" aria-hidden="false">
+        <img class="slide visible" src="https://picsum.photos/id/1011/800/450" alt="Memory 1">
+        <img class="slide" src="https://picsum.photos/id/1015/800/450" alt="Memory 2">
+        <img class="slide" src="https://picsum.photos/id/1016/800/450" alt="Memory 3">
+      </div>
+
+      <p class="small">Here are some memories and dreams I want to share with you… 💕</p>
+
+      <!-- video placeholder -->
+      <div id="videoPlaceholder" class="video-placeholder">
+        <p>🎥 A special video for you will appear here (you can embed a YouTube or Drive video later).</p>
+      </div>
+
+      <a id="driveLink" class="link-btn" href="YOUR_GOOGLE_DRIVE_LINK" target="_blank" rel="noopener">🎟️ Open Your Gift (Tickets & Details)</a>
+
+      <p class="cheesy">This is not just a trip… it’s a promise of forever together ❤️</p>
+    </section>
+
+  </main>
+
+  <footer class="small">Forever yours, <strong>Vinay Patel</strong></footer>
 </body>
 </html>
 
