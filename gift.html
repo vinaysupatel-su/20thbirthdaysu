@@ -2,45 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Your Surprise Gift 🎁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Gift Sanjana</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <canvas id="confetti-canvas"></canvas>
+  <div class="hearts"></div>
   <div class="container">
-    <h1>🎉 Sanjana, My Love 🎉</h1>
-    <p class="message">After years of waiting, here is my special gift to you ❤️  
-    You are my everything, and this journey is just the beginning 🌍✨</p>
+    <h1 class="title">💝 Sanjana, my love, this is your gift 💝</h1>
+    <p class="subtitle">With you, every moment is special ❤️</p>
 
-    <h2>💞 Our Memories 💞</h2>
+    <!-- Slideshow -->
     <div class="slideshow-container">
-      <div class="mySlides fade">
-        <img src="https://picsum.photos/id/1015/600/400" alt="Slide 1">
-      </div>
-      <div class="mySlides fade">
-        <img src="https://picsum.photos/id/1016/600/400" alt="Slide 2">
-      </div>
-      <div class="mySlides fade">
-        <img src="https://picsum.photos/id/1025/600/400" alt="Slide 3">
-      </div>
+      <div class="slide fade"><img src="https://picsum.photos/600/400?random=1" alt="Pic 1"></div>
+      <div class="slide fade"><img src="https://picsum.photos/600/400?random=2" alt="Pic 2"></div>
+      <div class="slide fade"><img src="https://picsum.photos/600/400?random=3" alt="Pic 3"></div>
     </div>
 
-    <br>
-    <div style="text-align:center">
-      <span class="dot"></span> 
-      <span class="dot"></span> 
-      <span class="dot"></span> 
-    </div>
-
-    <h2>🎥 A Special Video</h2>
+    <!-- Video Placeholder -->
     <div class="video-placeholder">
-      <!-- Replace with your video embed later -->
-      <p>Video will be added here...</p>
+      <p>🎥 A special video for you will appear here…</p>
     </div>
 
-    <a href="https://drive.google.com/" target="_blank" class="gift-btn">🎁 Open Your Gift</a>
+    <!-- Gift Button -->
+    <a href="YOUR_GOOGLE_DRIVE_LINK" target="_blank">
+      <button class="gift-btn">🎁 Open Your Gift</button>
+    </a>
   </div>
+
+  <canvas id="confetti-canvas"></canvas>
+  <script src="script.js"></script>
 </body>
 </html>
 
